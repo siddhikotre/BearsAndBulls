@@ -1,59 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>HTML Login Page with Bootstrap Example</title>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
-    <link href="./style.css" rel="stylesheet">
-
+  <meta charset="UTF-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Sign in & Sign up Form</title>
+  <link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div class="pt-5">
-    <h1 class="text-center">Login</h1>
+<main>
+  <div class="box">
+    <div class="inner-box">
+      <div class="forms-wrap">
+        <form action="register.html" autocomplete="off" class="sign-in-form">
+          <div class="logo">
+            <img alt="BearsAndBulls" src="logo.png"/>
+            <h4>BearsAndBulls</h4>
+          </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 mx-auto">
-                <div class="card card-body">
+          <div class="heading">
+            <h2>Welcome Back</h2>
+            <h6>Not registered yet?</h6>
+            <a class="toggle" href="#">Sign up</a>
+          </div>
 
-                    <form action="/login" data-parsley-errors-messages-disabled="true" data-parsley-validate=""
-                          id="submitForm" lpchecked="1" method="post" novalidate="">
-                        <input name="_csrf" type="hidden"
-                               value="7635eb83-1f95-4b32-8788-abec2724a9a4">
-                        <div class="form-group required">
-                            <label for="username">Username / Email</label>
-                            <input class="form-control text-lowercase" id="username" name="username" required=""
-                                   type="text" value="">
-                        </div>
-                        <div class="form-group required">
-                            <label class="d-flex flex-row align-items-center" for="password">Password
-                                <a class="ml-auto border-link small-xl" href="/forget-password">Forget?</a></label>
-                            <input class="form-control" id="password" name="password" required="" type="password"
-                                   value="">
-                        </div>
-                        <div class="form-group mt-4 mb-4">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" data-parsley-multiple="remember-me" id="remember-me"
-                                       name="remember-me" type="checkbox">
-                                <label class="custom-control-label" for="remember-me">Remember me?</label>
-                            </div>
-                        </div>
-                        <div class="form-group pt-1">
-                            <button class="btn btn-primary btn-block" type="submit">Log In</button>
-                        </div>
-                    </form>
-                    <p class="small-xl pt-3 text-center">
-                        <span class="text-muted">Not a member?</span>
-                        <a href="/signup">Sign up</a>
-                    </p>
-                </div>
+          <div class="actual-form">
+            <div class="input-wrap">
+              <input
+                      autocomplete="off"
+                      class="input-field"
+                      minlength="4"
+                      required
+                      type="text"
+              />
+              <label>Name</label>
             </div>
-        </div>
-    </div>
-</div>
-<!-- partial -->
 
+            <div class="input-wrap">
+              <input
+                      autocomplete="off"
+                      class="input-field"
+                      minlength="4"
+                      required
+                      type="password"
+              />
+              <label>Password</label>
+            </div>
+
+            <input class="sign-btn" type="submit" value="Sign In"/>
+
+            <p class="text">
+              Forgotten your password or your login details?
+              <a href="#">Get help</a> signing in
+            </p>
+          </div>
+        </form>
+
+        <form action="register.html" autocomplete="off" class="sign-up-form">
+          <div class="logo">
+            <img alt="BearsAndBulls" src="logo.png"/>
+            <h4>BearsAndBulls</h4>
+          </div>
+
+          <div class="heading">
+            <h2>Get Started</h2>
+            <h6>Already have an account?</h6>
+            <a class="toggle" href="#">Sign in</a>
+          </div>
+
+          <div class="actual-form">
+            <div class="input-wrap">
+              <input
+                      autocomplete="off"
+                      class="input-field"
+                      minlength="4"
+                      required
+                      type="text"
+              />
+              <label>Name</label>
+            </div>
+
+            <div class="input-wrap">
+              <input
+                      autocomplete="off"
+                      class="input-field"
+                      required
+                      type="email"
+              />
+              <label>Email</label>
+            </div>
+
+            <div class="input-wrap">
+              <input
+                      autocomplete="off"
+                      class="input-field"
+                      minlength="4"
+                      required
+                      type="password"
+              />
+              <label>Password</label>
+            </div>
+
+            <input class="sign-btn" type="submit" value="Sign Up"/>
+
+            <p class="text">
+              By signing up, I agree to the
+              <a href="#">Terms of Services</a> and
+              <a href="#">Privacy Policy</a>
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="carousel">
+        <div class="images-wrapper">
+          <img alt="" class="image img-1 show" src="image1.png"/>
+          <img alt="" class="image img-2" src="image2.png"/>
+          <img alt="" class="image img-3" src="image3.png"/>
+        </div>
+
+        <div class="text-slider">
+          <div class="text-wrap">
+            <div class="text-group">
+              <h2>Create your own courses</h2>
+              <h2>Customize as you like</h2>
+              <h2>Invite students to your class</h2>
+            </div>
+          </div>
+
+          <div class="bullets">
+            <span class="active" data-value="1"></span>
+            <span data-value="2"></span>
+            <span data-value="3"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Javascript file -->
+
+<script src="register.js"></script>
 </body>
 </html>
