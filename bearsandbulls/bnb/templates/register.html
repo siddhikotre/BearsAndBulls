@@ -407,16 +407,16 @@
   <div class="box">
     <div class="inner-box">
       <div class="forms-wrap">
-        <form action="{% url 'rules' %}" autocomplete="off" class="sign-in-form" method="post">
+        <form action="{% url 'login' %}" autocomplete="off" class="sign-in-form" method="post">
           {% csrf_token %}
           <div class="logo">
-            <!--            <img alt="bnb" src="./img/logo.png"/>-->
+            <!--<img alt="bnb" src="./img/logo.png"/>-->
             <h4>BearsandBulls</h4>
           </div>
 
           <div class="heading">
             <h2>Welcome Back</h2>
-            <h6>Not registred yet?</h6>
+            <h6>Not registered yet?</h6>
             <a class="toggle" href="#">Sign up</a>
           </div>
 
@@ -426,6 +426,7 @@
                       autocomplete="off"
                       minlength="4"
                       class="input-field"
+                      name="username1"
                       type="text"
                       required
               />
@@ -437,6 +438,7 @@
                       autocomplete="off"
                       minlength="4"
                       class="input-field"
+                      name="password1"
                       type="password"
                       required
               />
@@ -445,6 +447,9 @@
             <div class="button">
               <input class="sign-btn" type="submit" value="Sign In"/>
             </div>
+            {% if error %}
+            <div> {{error}}</div>
+            {% endif %}
             <p class="text">
               Forgotten your password or youR login details?
               <a href="#">Get help</a> signing in
@@ -455,7 +460,7 @@
         <form action="{% url 'register' %}" autocomplete="off" class="sign-up-form" method="post">
           {% csrf_token %}
           <div class="logo">
-            <!--            <img alt="bnb" src="./img/logo.png"/>-->
+            <!-- <img alt="bnb" src="./img/logo.png"/>-->
             <h4>BearAndBulls</h4>
           </div>
 
@@ -471,6 +476,7 @@
                       autocomplete="off"
                       minlength="4"
                       class="input-field"
+                      name="username"
                       type="text"
                       required
               />
@@ -482,6 +488,7 @@
                       autocomplete="off"
                       class="input-field"
                       type="email"
+                      name="email"
                       required
               />
               <label>Email</label>
@@ -492,6 +499,7 @@
                       autocomplete="off"
                       minlength="4"
                       class="input-field"
+                      name="password"
                       type="password"
                       required
               />

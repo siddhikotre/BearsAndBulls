@@ -1,28 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        main {
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+            background-color: #25274D;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box {
+            position: relative;
+            width: 100%;
+            max-width: 1020px;
+            height: 640px;
+            background-color: #fff;
+            border-radius: 3.3rem;
+            box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Rules</title>
 </head>
+
 <body>
-1. The server will choose a random four lettered word which will not be visible to the player.<br>
-2. The player must guess the word in a minimum number of turns.<br>
-3. The player can type the word he wants to play in the text box and then click on the HIT WORD button.<br>
-4.a. If your word and the word selected by the server have common letters but at different positions,
-the count of such letters will be the number of bears.<br>
-4. b. If your word and the word selected by the server have common letters and at the same positions,
-the count of such letters will be the number of bulls.<br>
-4. c. On guessing all four letters of words at the correct position, you win the game.
-For example if the word chosen by the server is 'COLD' and you
-play the word 'LADY' It will be 2 BEARS AND 0 BULLS because
-the letters 'L' and 'D' are common but at different positions,
-similarly, if you play the word 'COPY'. It will be 0 BEARS AND 2
-BULLS because the letters 'C' and 'O' are common and at the same
-positions.
-6. To reset a game to get a new word from the server, press the
-RESET button.
-<div class="button">
-    <input onclick="location.href ='http://127.0.0.1:8000/pregame/'" type="button" value="Start"/>
-</div>
+<main>
+    <div class="box">
+        <br><br><br>
+        1. The server will choose a random four lettered word which will not be visible to the player.<br>
+        2. The player must guess the word in a minimum number of turns.<br>
+        3. The player can type the word he wants to play in the text box and then click on the HIT WORD button.<br>
+        4.a. If your word and the word selected by the server have common letters but at different positions,
+        the count of such letters will be the number of bears.<br>
+        4. b. If your word and the word selected by the server have common letters and at the same positions,
+        the count of such letters will be the number of bulls.<br>
+        4. c. On guessing all four letters of words at the correct position, you win the game.
+        For example if the word chosen by the server is 'COLD' and you
+        play the word 'LADY' It will be 2 BEARS AND 0 BULLS because
+        the letters 'L' and 'D' are common but at different positions,
+        similarly, if you play the word 'COPY'. It will be 0 BEARS AND 2
+        BULLS because the letters 'C' and 'O' are common and at the same
+        positions.
+        6. To reset a game to get a new word from the server, press the
+        RESET button.
+        <div class="button">
+            <input onclick="location.href ='http://127.0.0.1:8000/pregame/'" type="button" value="Start"/>
+        </div>
+    </div>
+
+</main>
 </body>
 </html>
