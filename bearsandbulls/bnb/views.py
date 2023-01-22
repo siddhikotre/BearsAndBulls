@@ -15,9 +15,18 @@ def login(request):
 def register(request):
     return render(request, 'register.html')
 
+
 def rules(request):
     return render(request, 'rules.html')
 
 
 def pregame(request):
     return render(request, 'pregame.html')
+
+
+def game(request):
+    return render(request, 'game.html')
+
+
+def endgame(request):
+    return render(request, 'endgame.html')
