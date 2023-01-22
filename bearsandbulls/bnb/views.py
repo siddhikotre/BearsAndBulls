@@ -14,3 +14,6 @@ def login(request):
 
 def register(request):
     return render(request, 'register.html')
+
+def rules(request):
+    return render(request, 'rules.html')
