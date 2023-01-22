@@ -17,3 +17,7 @@ def register(request):
 
 def rules(request):
     return render(request, 'rules.html')
+
+
+def pregame(request):
+    return render(request, 'pregame.html')

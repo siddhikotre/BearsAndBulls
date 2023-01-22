@@ -25,7 +25,7 @@
       width: 100%;
       min-height: 100vh;
       overflow: hidden;
-      background-color: #ff8c6b;
+      background-color: #25274D;
       padding: 2rem;
       display: flex;
       align-items: center;
@@ -407,10 +407,11 @@
   <div class="box">
     <div class="inner-box">
       <div class="forms-wrap">
-        <form action="rules.html" autocomplete="off" class="sign-in-form">
+        <form action="{% url 'rules' %}" autocomplete="off" class="sign-in-form" method="post">
+          {% csrf_token %}
           <div class="logo">
-            <img alt="easyclass" src="./img/logo.png"/>
-            <h4>easyclass</h4>
+            <!--            <img alt="bnb" src="./img/logo.png"/>-->
+            <h4>BearsandBulls</h4>
           </div>
 
           <div class="heading">
@@ -441,20 +442,21 @@
               />
               <label>Password</label>
             </div>
-
-            <input class="sign-btn" type="submit" value="Sign In"/>
-
+            <div class="button">
+              <input class="sign-btn" type="submit" value="Sign In"/>
+            </div>
             <p class="text">
-              Forgotten your password or you login details?
+              Forgotten your password or youR login details?
               <a href="#">Get help</a> signing in
             </p>
           </div>
         </form>
 
-        <form action="rules.html" autocomplete="off" class="sign-up-form">
+        <form action="{% url 'register' %}" autocomplete="off" class="sign-up-form" method="post">
+          {% csrf_token %}
           <div class="logo">
-            <img alt="easyclass" src="./img/logo.png"/>
-            <h4>easyclass</h4>
+            <!--            <img alt="bnb" src="./img/logo.png"/>-->
+            <h4>BearAndBulls</h4>
           </div>
 
           <div class="heading">
@@ -517,9 +519,9 @@
         <div class="text-slider">
           <div class="text-wrap">
             <div class="text-group">
-              <h2>Create your own courses</h2>
-              <h2>Customize as you like</h2>
-              <h2>Invite students to your class</h2>
+              <h2>Ready for test your word-play game</h2>
+              <h2>Lets get going!</h2>
+              <h2>Invite your friends to play with you</h2>
             </div>
           </div>
 
