@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bnb.apps.BnbConfig',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
