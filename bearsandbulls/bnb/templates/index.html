@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static%}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
@@ -56,7 +57,7 @@
             font-family: Candara;
             font-size: 40px;
             text-align: center;
-
+            margin-top: 3%;
         }
 
         .sign-btn {
@@ -73,12 +74,19 @@
             transition: 0.3s;
             position: absolute;
             left: 25%;
-            bottom: 150px;
+            bottom: 100px;
 
         }
 
         .sign-btn:hover {
             background-color: #8371fd;
+        }
+
+        .center {
+            display: inline-block;
+            margin-left: 25%;
+            margin-top: 5%;
+            width: 40%;
         }
     </style>
 </head>
@@ -86,8 +94,10 @@
 <main>
     <div class="box">
         <div class="inner-box">
-            <h1> Welcome to Bears and Bulls</h1>
 
+            <h1> Welcome to Bears and Bulls!!!</h1>
+
+            <img class="center" src="{% static 'bnb/image/bnbindex.jpg' %}">
         </div>
         <div class="button">
             <input class="sign-btn" onclick="location.href ='http://127.0.0.1:8000/register/'" type="submit"

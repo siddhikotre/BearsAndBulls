@@ -1,3 +1,4 @@
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 
 from . import views
@@ -11,3 +12,5 @@ urlpatterns = [
     path('game/', views.game, name="game"),
     path('endgame/', views.endgame, name="endgame"),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

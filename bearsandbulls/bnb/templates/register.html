@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+{% load static%}
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Sign in & Sign up Form</title>
+  <title>Register&Login</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
@@ -87,12 +88,12 @@
     }
 
     .logo img {
-      width: 27px;
-      margin-right: 0.3rem;
+      width: 100px;
+      margin-right: 0.2rem;
     }
 
-    .logo h4 {
-      font-size: 1.1rem;
+    .logo h2 {
+      font-size: 1.6rem;
       margin-top: -9px;
       letter-spacing: -0.5px;
       color: #151111;
@@ -410,8 +411,8 @@
         <form action="{% url 'login' %}" autocomplete="off" class="sign-in-form" method="post">
           {% csrf_token %}
           <div class="logo">
-            <!--<img alt="bnb" src="./img/logo.png"/>-->
-            <h4>BearsandBulls</h4>
+            <img class="center" src="{% static 'bnb/image/logoo.jpg' %}">
+            <h2>BearsandBulls</h2>
           </div>
 
           <div class="heading">
@@ -460,8 +461,8 @@
         <form action="{% url 'register' %}" autocomplete="off" class="sign-up-form" method="post">
           {% csrf_token %}
           <div class="logo">
-            <!-- <img alt="bnb" src="./img/logo.png"/>-->
-            <h4>BearAndBulls</h4>
+            <img class="center" src="{% static 'bnb/image/logoo.jpg' %}">
+            <h2>BearAndBulls</h2>
           </div>
 
           <div class="heading">
