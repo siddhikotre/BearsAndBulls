@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.http import HttpResponse
 from django.shortcuts import render
 
 
@@ -9,7 +8,7 @@ from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('Hey thank god your app is working')
+    return render(request, 'index.html')
 
 
 def register(request):

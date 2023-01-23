@@ -2,56 +2,149 @@
 <html lang="en">
 <head>
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+        *,
+        *::before,
+        *::after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        input {
+            font-family: "Poppins", sans-serif;
+        }
+
+        main {
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+            background-color: #25274D;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box {
+            position: relative;
+            width: 100%;
+            max-width: 1020px;
+            height: 640px;
+            background-color: #fff;
+            border-radius: 3.3rem;
+            box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+        }
+
+        .inner-box {
+            position: static;
+            transform: none;
+            width: revert;
+            height: revert;
+            padding: 3rem;
+            padding-right: 2rem;
+            padding-left: 4rem;
+        }
 
         .parent {
-            border: 1px solid black;
+            border: 1px;
             margin: 1rem;
-            padding: 2rem 2rem;
+            padding: 2rem;
             text-align: center;
         }
 
         .child {
-            display: inline-block;
-            border: 1px solid red;
-            padding: 1rem 1rem;
+            display: flow;
+            border: 5px solid lightgray;
+            padding: 2rem;
             vertical-align: middle;
+            transition: transform .10s;
+        }
+
+        .child:hover {
+            transform: scale(1.1);
         }
 
         .title {
             text-align: center;
+        }
 
+        .sign-btn {
+            display: inline-block;
+            width: 50%;
+            height: 43px;
+            background-color: #151111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+            position: absolute;
+
+            bottom: 0;
+
+        }
+
+        .sign-btn:hover {
+            background-color: #8371fd;
+        }
+
+        #back {
+            width: 40%;
+            position: absolute;
+            left: 50px;
+        }
+
+        #play {
+            width: 40%;
+            position: absolute;
+            right: 50px;
         }
     </style>
     <meta charset="UTF-8">
     <title>Pregame</title>
 </head>
 <body>
-<h1 class="title">CUSTOMIZE YOUR GAME</h1>
-<div class='parent'>
-    <div class='child'>Select player mode:<br>
-        <select id="player" name="player">
-            <option value="single">Single</option>
-            <option value="duo">Duo</option>
-        </select>
+<main>
+    <div class="box">
+        <div class="inner-box">
+            <h1 class="title">CUSTOMIZE YOUR GAME</h1>
+            <div class='parent'>
+                <div class='child'>Select player mode:<br>
+                    <select id="player" name="player">
+                        <option value="single">Single</option>
+                        <option value="duo">Duo</option>
+                    </select>
+                </div>
+                <div class='child'>Select Difficulty level:<br>
+                    <select id="difficulty" name="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div class='child'>Select Word-Length:<br>
+                    <select id="length" name="length">
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </div>
+            <div class="button">
+                <input class="sign-btn" id="play" onclick="location.href ='http://127.0.0.1:8000/game/'" type="submit"
+                       value="PLAY>>"/>
+            </div>
+            <div class="button">
+                <input class="sign-btn" id="back" onclick="location.href ='http://127.0.0.1:8000/rules/'" type="submit"
+                       value="<<Back to Rules"/>
+            </div>
+        </div>
     </div>
-    <div class='child'>Select Difficulty level:<br>
-        <select id="difficulty" name="difficulty">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
-    </div>
-    <div class='child'>Select Word-Length:<br>
-        <select id="length" name="length">
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-    </div>
-</div>
-
-<div class="button">
-    <input onclick="location.href ='http://127.0.0.1:8000/game/'" type="button" value="Start"/>
-</div>
+</main>
 </body>
 </html>

@@ -2,6 +2,21 @@
 <html lang="en">
 <head>
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+        *,
+        *::before,
+        *::after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        input {
+            font-family: "Poppins", sans-serif;
+        }
+
         main {
             width: 100%;
             min-height: 100vh;
@@ -22,6 +37,62 @@
             border-radius: 3.3rem;
             box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
         }
+
+        .inner-box {
+            position: static;
+            transform: none;
+            width: revert;
+            height: revert;
+            padding: 3rem;
+            padding-right: 2rem;
+            padding-left: 4rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #29644a;
+        }
+
+        h2 {
+            text-align: center;
+            color: #AAABB8;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 4px;
+            font-weight: bold;
+        }
+
+        .sign-btn {
+            display: inline-block;
+            width: 50%;
+            height: 43px;
+            background-color: #151111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+            position: absolute;
+            left: 25%;
+            bottom: 0;
+
+        }
+
+        .sign-btn:hover {
+            background-color: #8371fd;
+        }
+
     </style>
     <meta charset="UTF-8">
     <title>Rules</title>
@@ -30,25 +101,66 @@
 <body>
 <main>
     <div class="box">
-        <br><br><br>
-        1. The server will choose a random four lettered word which will not be visible to the player.<br>
-        2. The player must guess the word in a minimum number of turns.<br>
-        3. The player can type the word he wants to play in the text box and then click on the HIT WORD button.<br>
-        4.a. If your word and the word selected by the server have common letters but at different positions,
-        the count of such letters will be the number of bears.<br>
-        4. b. If your word and the word selected by the server have common letters and at the same positions,
-        the count of such letters will be the number of bulls.<br>
-        4. c. On guessing all four letters of words at the correct position, you win the game.
-        For example if the word chosen by the server is 'COLD' and you
-        play the word 'LADY' It will be 2 BEARS AND 0 BULLS because
-        the letters 'L' and 'D' are common but at different positions,
-        similarly, if you play the word 'COPY'. It will be 0 BEARS AND 2
-        BULLS because the letters 'C' and 'O' are common and at the same
-        positions.
-        6. To reset a game to get a new word from the server, press the
-        RESET button.
-        <div class="button">
-            <input onclick="location.href ='http://127.0.0.1:8000/pregame/'" type="button" value="Start"/>
+        <div class="inner-box">
+            <h1>How to play?</h1>
+            <h2>Guess the word in minimum trys</h2>
+            <ul>
+                <li> The server will choose a random word which will not be visible to the player.<br></li>
+                <li> The player can type the word he wants to play in the text box and then click on the ENTER
+                    button.<br></li>
+                <li><p style="color:red">a. If your word and the word selected by the server have common letters but at
+                    different positions,
+                    the count of such letters will be the number of bears.<br></li>
+                </p>
+                <li><p style="color:red"> b. If your word and the word selected by the server have common letters and at
+                    the same positions,
+                    the count of such letters will be the number of bulls.<br></li>
+                </p>
+                <li>FOR EXAMPLE:
+                <li>The sever generated<b style="color: navy"> SUPERWORD </b>is:</li>
+
+                <table>
+                    <tr>
+                        <td>C</td>
+                        <td>O</td>
+                        <td>L</td>
+                        <td>D</td>
+                    </tr>
+                </table>
+
+                <li>The first word you have guessed is:</li>
+                <table>
+                    <tr>
+                        <td>L</td>
+                        <td>A</td>
+                        <td>D</td>
+                        <td>Y</td>
+                    </tr>
+                </table>
+                <li>Since they have common letters 'L' and 'D':</li>
+                <table>
+                    <tr>
+                        <td>C</td>
+                        <td>O</td>
+                        <td style="color: red">L</td>
+                        <td style="color: red">D</td>
+                    </tr>
+                    <tr>
+                        <td style="color: red">L</td>
+                        <td>A</td>
+                        <td style="color: red">D</td>
+                        <td>Y</td>
+                    </tr>
+                </table>
+                <li>Thus we have 2 Bears and 0 Bulls</li>
+
+                <li>On guessing all four letters of words at the correct position, you win the game.</li>
+                <li> To reset a game to get a new word from the server, press the RESET button.</li>
+            </ul>
+            <div class="button">
+                <input class="sign-btn" onclick="location.href ='http://127.0.0.1:8000/pregame/'" type="submit"
+                       value="Lets's Start"/>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <style>
+
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+        *,
+        *::before,
+        *::after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        input {
+            font-family: "Poppins", sans-serif;
+        }
+
+        main {
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+            background-color: #25274D;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box {
+            position: relative;
+            width: 100%;
+            max-width: 1020px;
+            height: 640px;
+            background-color: #fff;
+            border-radius: 3.3rem;
+            box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+        }
+
+        .inner-box {
+            position: static;
+            transform: none;
+            width: revert;
+            height: revert;
+            padding: 3rem;
+            padding-right: 2rem;
+            padding-left: 4rem;
+        }
+
+        h1 {
+            font-weight: bold;
+            font-family: Candara;
+            font-size: 40px;
+            text-align: center;
+
+        }
+
+        .sign-btn {
+            display: inline-block;
+            width: 50%;
+            height: 43px;
+            background-color: #151111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+            position: absolute;
+            left: 25%;
+            bottom: 150px;
+
+        }
+
+        .sign-btn:hover {
+            background-color: #8371fd;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="box">
+        <div class="inner-box">
+            <h1> Welcome to Bears and Bulls</h1>
+
+        </div>
+        <div class="button">
+            <input class="sign-btn" onclick="location.href ='http://127.0.0.1:8000/register/'" type="submit"
+                   value="Let's Go>>"/>
+        </div>
+    </div>
+</main>
+</body>
+</html>
