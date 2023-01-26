@@ -150,6 +150,9 @@
             position: absolute;
             right: 50px;
         }
+        .text{
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -158,22 +161,24 @@
         <div class="inner-box">
             <form action="{% url 'game' %}" autocomplete="off" class="sign-in-form" method="post">
                 {% csrf_token %}
+                <div align="right">GAME ID : {{ request.session.game_id }}</div>
                 <h1>Welcome to Bears & Bulls</h1><br>
                 <input class="text" id="text" name="text" type="text"><br>
                 <div class="button">
-                    <input class="btn1" id="enter" type="button" value="Enter">
+                    <input class="btn1" id="enter" type="submit" value="Enter" onclick="{% url 'game' %}">
                     <div>
                         <input class="btn2" id="reset" type="reset" value="Reset"/>
                     </div>
                 </div>
                 <br><br>
                 <div>
-                    <input class="display" id="display" name="display" type="text1"><br>
+                     <textarea id ="display" name="display" class="display" cols="50" rows="5" style="overflow:scroll; width: 100%;height: 170px">
+                        {{request.session.display }}
+                      </textarea>
                 </div>
                 <div>
- <textarea cols="50" rows="5" style="overflow:scroll; width: 100%;height: 100px">
-Rough Work Area...
-  </textarea>
+                     <textarea cols="50" rows="5" style="width: 100%;height: 100px" placeholder="Rough text area">
+                      </textarea>
                 </div>
 
             </form>
