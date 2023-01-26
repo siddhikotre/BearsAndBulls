@@ -156,23 +156,27 @@
 <main>
     <div class="box">
         <div class="inner-box">
-            <h1>Welcome to Bears & Bulls</h1><br>
-            <input class="text" id="text" name="text" type="text"><br>
-            <div class="button">
-                <input class="btn1" id="enter" type="button" value="Enter">
-                <div>
-                    <input class="btn2" id="reset" type="reset" value="Reset">
+            <form action="{% url 'game' %}" autocomplete="off" class="sign-in-form" method="post">
+                {% csrf_token %}
+                <h1>Welcome to Bears & Bulls</h1><br>
+                <input class="text" id="text" name="text" type="text"><br>
+                <div class="button">
+                    <input class="btn1" id="enter" type="button" value="Enter">
+                    <div>
+                        <input class="btn2" id="reset" type="reset" value="Reset"/>
+                    </div>
                 </div>
-            </div>
-            <br><br>
-            <div>
-                <input class="display" id="display" name="display" type="text1"><br>
-            </div>
-            <div>
+                <br><br>
+                <div>
+                    <input class="display" id="display" name="display" type="text1"><br>
+                </div>
+                <div>
  <textarea cols="50" rows="5" style="overflow:scroll; width: 100%;height: 100px">
 Rough Work Area...
   </textarea>
-            </div>
+                </div>
+
+            </form>
             <div class="button">
                 <input class="sign-btn" onclick="location.href ='http://127.0.0.1:8000/endgame/'" type="submit"
                        value="Quit"/>
