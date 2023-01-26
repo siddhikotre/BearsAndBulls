@@ -88,7 +88,7 @@
             margin-bottom: 2rem;
             transition: 0.3s;
             position: absolute;
-
+            text-align: center;
             bottom: 0;
 
         }
@@ -135,37 +135,41 @@
 <main>
     <div class="box">
         <div class="inner-box">
-            <h1 class="title">CUSTOMIZE YOUR GAME</h1>
-            <div class='parent'>
-                <div class='child'>Select player mode:<br>
-                    <select class="dropdown" id="player" name="player">
-                        <option value="single">Single</option>
-                        <option value="duo">Duo</option>
-                    </select>
+            <form action="{% url 'game' %}" autocomplete="off" class="sign-in-form" method="post">
+                {% csrf_token %}
+                <h1 class="title">CUSTOMIZE YOUR GAME</h1>
+                <div class='parent'>
+                    <div class='child'>Select player mode:<br>
+                        <select class="dropdown" id="player" name="player">
+                            <option value="single">Single</option>
+                            <option value="duo">Duo</option>
+                        </select>
+                    </div>
+                    <div class='child'>Select Difficulty level:<br>
+                        <select class="dropdown" id="difficulty" name="difficulty">
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class='child'>Select Word-Length:<br>
+                        <select class="dropdown" id="length" name="length">
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
                 </div>
-                <div class='child'>Select Difficulty level:<br>
-                    <select class="dropdown" id="difficulty" name="difficulty">
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
+                <div class="button">
+                    <input class="sign-btn" id="play" onclick="location.href ='http://127.0.0.1:8000/game/'"
+                           type="submit"
+                           value="PLAY>>"/>
                 </div>
-                <div class='child'>Select Word-Length:<br>
-                    <select class="dropdown" id="length" name="length">
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+                <div class="button">
+                    <input class="sign-btn" id="back" onclick="location.href ='http://127.0.0.1:8000/rules/'"
+                           value="<<Back to Rules"/>
                 </div>
-            </div>
-            <div class="button">
-                <input class="sign-btn" id="play" onclick="location.href ='http://127.0.0.1:8000/game/'" type="submit"
-                       value="PLAY>>"/>
-            </div>
-            <div class="button">
-                <input class="sign-btn" id="back" onclick="location.href ='http://127.0.0.1:8000/rules/'" type="submit"
-                       value="<<Back to Rules"/>
-            </div>
+            </form>
         </div>
     </div>
 </main>
