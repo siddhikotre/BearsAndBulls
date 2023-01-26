@@ -56,11 +56,15 @@
         }
 
         .child {
-            display: flow;
-            border: 5px solid lightgray;
-            padding: 2rem;
+            display: inline-block;
+            border: 2px solid lightgray;
             vertical-align: middle;
             transition: transform .10s;
+            border-radius: 25px;
+            padding: 20px;
+            width: 250px;
+            height: 170px;
+
         }
 
         .child:hover {
@@ -97,13 +101,32 @@
             width: 40%;
             position: absolute;
             left: 50px;
+            bottom: 120px;
         }
 
         #play {
             width: 40%;
             position: absolute;
             right: 50px;
+            bottom: 120px;
         }
+
+        .dropdown {
+            min-height: 25px;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            display: inline-block;
+            position: center;
+            z-index: 1;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: Constantia;
+            font-size: 15px;
+        }
+
+
     </style>
     <meta charset="UTF-8">
     <title>Pregame</title>
@@ -115,20 +138,20 @@
             <h1 class="title">CUSTOMIZE YOUR GAME</h1>
             <div class='parent'>
                 <div class='child'>Select player mode:<br>
-                    <select id="player" name="player">
+                    <select class="dropdown" id="player" name="player">
                         <option value="single">Single</option>
                         <option value="duo">Duo</option>
                     </select>
                 </div>
                 <div class='child'>Select Difficulty level:<br>
-                    <select id="difficulty" name="difficulty">
+                    <select class="dropdown" id="difficulty" name="difficulty">
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
                 </div>
                 <div class='child'>Select Word-Length:<br>
-                    <select id="length" name="length">
+                    <select class="dropdown" id="length" name="length">
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
