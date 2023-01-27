@@ -78,7 +78,7 @@ def pregame(request):
     return render(request, 'pregame.html')
 
 
-def bears_and_bulls(superword, curword):
+def bears_and_bulls(superword, curword,game_id):
     message = ""
     input_word = curword.upper()
     super_word = superword.upper()
@@ -94,7 +94,7 @@ def bears_and_bulls(superword, curword):
                 if input_word[i] == input_word[j]:
                     invalid = True
         if invalid:
-            message = "Cannot accept word with duplicate letters,\n please enter new word..."
+            message = "Cannot accept word with duplicate letters, please enter new word..."
 
     if not invalid:
         bears = 0
@@ -108,6 +108,9 @@ def bears_and_bulls(superword, curword):
 
         if bulls == len(super_word):
             message = f"Congratulations you have guessed the word correct ! The word was {super_word}"
+            gameobj = game.objects.filter(game_id=game_id).first()
+            gameobj.is_active = 2
+            gameobj.save()
         else:
             message = f"YOUR WORD: {input_word} : {str(bears)} BEARS AND {str(bulls)}  BULLS."
 
@@ -118,18 +121,20 @@ def bears_and_bulls(superword, curword):
 def game_view(request):
     gamelog_id = request.session['gamelog_id']
     print(f"game log id {gamelog_id}")
-    gamelogobj = gamelog.objects.all().filter(gamelog_id= gamelog_id).first()
+    gamelogobj = gamelog.objects.all().filter(gamelog_id=gamelog_id).first()
     gameid = request.session['game_id']
     gameobj = game.objects.filter(game_id=gameid).first()
     if gameobj.is_active == 1:
         if request.method == 'POST':
             current_word = request.POST['text']
             gamelogobj.inputtext = current_word
-            message = bears_and_bulls(word.objects.filter(word_id=gameobj.word).first().word, current_word)
+            message = bears_and_bulls(word.objects.filter(word_id=gameobj.word).first().word, current_word,gameid)
             print(message)
-            display = gamelogobj.display + " \n " + message
-            gamelogobj.display  = display
+            display = message + "\n" + gamelogobj.display
+            gamelogobj.rough = request.POST['rough']
+            gamelogobj.display = display
             request.session['display'] = display
+            request.session['rough'] = request.POST['rough']
             gamelogobj.save()
     return render(request, 'game.html')
 
@@ -145,3 +150,8 @@ def increment_game_number():
 
     booking_int = int(last_game.game_id.split('_')[1]) + 1
     return 'BNB_' + str(booking_int)
+
+
+def logout_view(request):
+    logout(request)
+    return render(request,'register.html')

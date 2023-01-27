@@ -156,8 +156,7 @@
         <div class="inner-box">
             <form action="{% url 'pregame' %}" autocomplete="off" class="sign-in-form" method="POST">
                 {% csrf_token %}
-                <div><input class="logout" type="submit" value="Log Out"/></div>
-                <h1 class="title">CUSTOMIZE YOUR GAME</h1>
+                <div align="right"><a href="{% url 'logout' %}">LOGOUT</a></div>          <h1 class="title">CUSTOMIZE YOUR GAME</h1>
                 <div class='parent'>
                     <div class='child'>Select player mode:<br>
                         <select class="dropdown" id="player" name="player">

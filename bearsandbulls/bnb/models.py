@@ -34,7 +34,8 @@ class game(models.Model):
 class gamelog(models.Model):
     gamelog_id = models.CharField(max_length=50,primary_key=True)
     text = models.CharField(max_length=50)
-    display = models.CharField(max_length=5000)
+    display = models.CharField(max_length=5000,default="")
+    rough = models.CharField(max_length=5000,default="")
 
     def __str__(self):
         return self.name
