@@ -54,31 +54,40 @@ def pregame(request):
     if request.method == 'POST':
         player = request.user
         playerch = request.POST['player']
-        difficulty = request.POST['difficulty']
-        length = request.POST['length']
-        game_id = increment_game_number()
-        if player is not None:
-            game_obj = game()
-            game_obj.game_id = game_id
-            game_obj.player_id = player.id
-            if playerch == 'single':
-                game_obj.is_active = 1
-            game_obj.player_mode = playerch
-            game_obj.difficulty = difficulty
-            game_obj.word_length = length
-            swfilter = word.objects.filter(length=length).filter(difficulty=difficulty)
-            game_obj.word = random.choice(list(swfilter.values()))['word_id']
-            game_obj.save()
-            request.session['game_id'] = game_id
-            request.session['gamelog_id'] = game_id
-            gamelogobj = gamelog()
-            gamelogobj.gamelog_id = game_id
-            gamelogobj.save()
-            return render(request, 'game.html')
+        opp_game_id = str(request.POST['txtvalue']).strip()
+        print(f"game_id {request.user.id}")
+        if opp_game_id != "":
+            game_obj2 = game.objects.filter(game_id=opp_game_id).first()
+            game_obj2.opponent_id = request.user.id
+            game_obj2.is_active = 1
+            game_obj2.save()
+            game_id = game_obj2.game_id
+        else:
+            difficulty = request.POST['difficulty']
+            length = request.POST['length']
+            game_id = increment_game_number()
+            if player is not None:
+                game_obj = game()
+                game_obj.game_id = game_id
+                game_obj.player_id = player.id
+                if playerch == 'single':
+                    game_obj.is_active = 1
+                game_obj.player_mode = playerch
+                game_obj.difficulty = difficulty
+                game_obj.word_length = length
+                swfilter = word.objects.filter(length=length).filter(difficulty=difficulty)
+                game_obj.word = random.choice(list(swfilter.values()))['word_id']
+                game_obj.save()
+        request.session['game_id'] = game_id
+        request.session['gamelog_id'] = game_id
+        gamelogobj = gamelog()
+        gamelogobj.gamelog_id = game_id
+        gamelogobj.save()
+        return render(request, 'game.html')
     return render(request, 'pregame.html')
 
 
-def bears_and_bulls(superword, curword,game_id):
+def bears_and_bulls(superword, curword,game_id,request):
     message = ""
     input_word = curword.upper()
     super_word = superword.upper()
@@ -110,6 +119,7 @@ def bears_and_bulls(superword, curword,game_id):
             message = f"Congratulations you have guessed the word correct ! The word was {super_word}"
             gameobj = game.objects.filter(game_id=game_id).first()
             gameobj.is_active = 2
+            gameobj.winner = request.user.id
             gameobj.save()
         else:
             message = f"YOUR WORD: {input_word} : {str(bears)} BEARS AND {str(bulls)}  BULLS."
@@ -128,9 +138,9 @@ def game_view(request):
         if request.method == 'POST':
             current_word = request.POST['text']
             gamelogobj.inputtext = current_word
-            message = bears_and_bulls(word.objects.filter(word_id=gameobj.word).first().word, current_word,gameid)
+            message = bears_and_bulls(word.objects.filter(word_id=gameobj.word).first().word, current_word,gameid,request)
             print(message)
-            display = message + "\n" + gamelogobj.display
+            display = request.user.username+": "+ message + "\n" + gamelogobj.display
             gamelogobj.rough = request.POST['rough']
             gamelogobj.display = display
             request.session['display'] = display
