@@ -147,6 +147,7 @@
             background-color: #8371fd;
         }
     </style>
+
     <meta charset="UTF-8">
     <title>Pregame</title>
 </head>
@@ -160,10 +161,14 @@
                 <div class='parent'>
                     <div class='child'>Select player mode:<br>
                         <select class="dropdown" id="player" name="player">
+                            <option>--Select--</option>
                             <option value="single">Single</option>
                             <option value="duo">Duo</option>
-                        </select>
+                        </select><br><br>
+                        <label>Enter game ID to join:</label>
+                        <input id="txtvalue" type="text"/>
                     </div>
+
                     <div class='child'>Select Difficulty level:<br>
                         <select class="dropdown" id="difficulty" name="difficulty">
                             <option value="easy">Easy</option>
@@ -179,6 +184,7 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="button">
                     <input class="sign-btn" id="play" onclick="location.href ='http://127.0.0.1:8000/game/'"
                            type="submit"
@@ -193,4 +199,5 @@
     </div>
 </main>
 </body>
+
 </html>
