@@ -150,8 +150,30 @@
             position: absolute;
             right: 50px;
         }
-        .text{
+
+        .text {
             text-align: left;
+        }
+
+        .logout {
+            display: inline-block;
+            width: 10%;
+            height: 43px;
+            background-color: #151111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+            position: absolute;
+            right: 20px;
+            top: 50px;
+        }
+
+        .logout:hover {
+            background-color: #8371fd;
         }
     </style>
 </head>
@@ -161,7 +183,8 @@
         <div class="inner-box">
             <form action="{% url 'game' %}" autocomplete="off" class="sign-in-form" method="post">
                 {% csrf_token %}
-                <div align="right">GAME ID : {{ request.session.game_id }}</div>
+                <div align="left">GAME ID : {{ request.session.game_id }}</div>
+                <div><input class="logout" type="submit" value="Log Out"/></div>
                 <h1>Welcome to Bears & Bulls</h1><br>
                 <input class="text" id="text" name="text" type="text"><br>
                 <div class="button">
