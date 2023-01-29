@@ -100,7 +100,9 @@
             <img class="center" src="{% static 'bnb/image/bnbindex.jpg' %}">
         </div>
         <div class="button">
-            <input class="sign-btn" onclick="location.href ='http://127.0.0.1:8000/register/'" type="submit"
+            <input class="sign-btn"
+                   onclick="location.href='{% url 'register' %}'"
+                   type="submit"
                    value="Let's Go>>"/>
         </div>
     </div>

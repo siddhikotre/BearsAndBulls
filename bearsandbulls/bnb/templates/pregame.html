@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%load static%>
 <html lang="en">
 <head>
     <style>
@@ -146,6 +147,7 @@
         .logout:hover {
             background-color: #8371fd;
         }
+
     </style>
 
     <meta charset="UTF-8">
@@ -185,12 +187,12 @@
                 </div>
 
                 <div class="button">
-                    <input class="sign-btn" id="play" onclick="location.href ='http://127.0.0.1:8000/game/'"
+                    <input class="sign-btn" id="play" onclick="location.href='{% url 'game' %}'"
                            type="submit"
                            value="PLAY>>"/>
                 </div>
                 <div class="button">
-                    <input class="sign-btn" id="back" onclick="location.href ='http://127.0.0.1:8000/rules/'"
+                    <input class="sign-btn" id="back" onclick="location.href='{% url 'rules' %}'"
                            value="<<Back to Rules"/>
                 </div>
             </form>

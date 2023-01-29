@@ -93,7 +93,7 @@
         <img class="image" src="{% static 'bnb/image/bandb.png' %}">
     </div>
     <div class="button">
-        <input class="sign-btn" onclick="location.href ='http://127.0.0.1:8000/pregame/'" type="submit"
+        <input class="sign-btn" onclick="location.href='{% url 'pregame' %}'" type="submit"
                value="Play Again?"/>
     </div>
 </main>
