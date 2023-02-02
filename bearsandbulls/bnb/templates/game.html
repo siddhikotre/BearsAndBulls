@@ -183,6 +183,51 @@
             width: 200px;
             height: 150px;
         }
+
+        .popup {
+            width: 600px;
+            height: 300px;
+            background: #ffffff;
+            border-radius: 6px;
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1);
+            text-align: center;
+            visibility: hidden;
+            padding: 0 30px 30px;
+            color: #333;
+            transition: transform 0.4s, top 0.4s;
+
+        }
+
+        .openPopup {
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+
+        }
+
+        .popup button {
+            width: 130%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6fd649;
+            color: #ffffff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+
+        }
     </style>
 </head>
 <body>
@@ -206,7 +251,9 @@
                      <textarea id ="display" name="display" class="display" cols="50" rows="5" style="text-align-all:left; overflow:auto; width: 100%;height: 170px">{{request.session.display}}</textarea>
                 </div>
                 <div>
-                     <textarea cols="50" rows="5" name="rough" id="rough" style="text-align-all:left; overflow:auto;width: 100%;height: 100px" placeholder="Rough text area">{{request.session.rough}}</textarea>
+                    <textarea cols="50" id="rough" name="rough" placeholder="Rough text area"
+                              rows="5"
+                              style="text-align-all:left; overflow:auto;width: 100%;height: 100px">{{request.session.rough}}</textarea>
                 </div>
 
             </form>
@@ -214,8 +261,26 @@
                 <input class="sign-btn" onclick="location.href='{% url 'endgame' %}'" type="submit"
                        value="Quit"/>
             </div>
+
+
+            <div class="popup" id="popup">
+                <h2>Thank you</h2>
+
+                <input class="sign-btn" onclick="closePopup()" type="submit" value="Okay"/>
+            </div>
         </div>
     </div>
 </main>
+<script>
+    let popup = document.getElementById("popup");
+
+    function openPopup() {
+        popup.classList.add("openPopup");
+    }
+
+    function closePopup() {
+        popup.classList.remove("openPopup");
+    }
+</script>
 </body>
 </html>

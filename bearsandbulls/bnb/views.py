@@ -87,7 +87,7 @@ def pregame(request):
     return render(request, 'pregame.html')
 
 
-def bears_and_bulls(superword, curword,game_id,request):
+def bears_and_bulls(superword, curword, game_id, request, phonetic):
     message = ""
     input_word = curword.upper()
     super_word = superword.upper()
@@ -116,7 +116,7 @@ def bears_and_bulls(superword, curword,game_id,request):
                     bears += 1
 
         if bulls == len(super_word):
-            message = f"Congratulations you have guessed the word correct ! The word was {super_word}"
+            message = f"Congratulations you have guessed the word correct ! The word was {super_word} phonetic{phonetic}"
             gameobj = game.objects.filter(game_id=game_id).first()
             gameobj.is_active = 2
             gameobj.winner = request.user.id
@@ -138,7 +138,8 @@ def game_view(request):
         if request.method == 'POST':
             current_word = request.POST['text']
             gamelogobj.inputtext = current_word
-            message = bears_and_bulls(word.objects.filter(word_id=gameobj.word).first().word, current_word,gameid,request)
+            message = bears_and_bulls(word.objects.filter(word_id=gameobj.word).first().word, current_word, gameid,
+                                      request, word.objects.filter(word_id=gameobj.word).first().phonetic)
             print(message)
             display = request.user.username+": "+ message + "\n" + gamelogobj.display
             gamelogobj.rough = request.POST['rough']
@@ -154,11 +155,14 @@ def endgame(request):
 
 
 def increment_game_number():
-    last_game = game.objects.all().order_by('game_id').last()
-    if not last_game:
+    gids = game.objects.all().values_list('game_id', flat=True)
+    last_game = []
+    if not gids:
         return 'BNB_' + '0'
-
-    booking_int = int(last_game.game_id.split('_')[1]) + 1
+    for i in gids:
+        last_game.append(int(i.split('_')[1]))
+    last_game.sort()
+    booking_int = last_game[len(last_game) - 1] + 1
     return 'BNB_' + str(booking_int)
 
 

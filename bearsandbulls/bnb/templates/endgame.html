@@ -57,7 +57,8 @@
         }
 
         .image {
-            margin-left: 10%;
+            margin-top: 5%;
+            margin-left: 5%;
         }
 
         .sign-btn {
@@ -81,21 +82,46 @@
         .sign-btn:hover {
             background-color: #8371fd;
         }
+
+        .logout {
+            display: inline-block;
+            width: 10%;
+            height: 43px;
+            background-color: #151111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+            position: absolute;
+            right: 20px;
+            top: 50px;
+        }
+
+        .logout:hover {
+            background-color: #8371fd;
+        }
 </style>
 </head>
 <body>
 <main>
     <div class="box">
         <div class="inner-box">
-            <h1> Better luck next time</h1>
+            <div align="right"><a href="{% url 'logout' %}">LOGOUT</a></div>
+            <h1> Thank you for playing!</h1>
 
+
+            <img class="image" src="{% static 'bnb/image/bandb1.png' %}">
         </div>
-        <img class="image" src="{% static 'bnb/image/bandb.png' %}">
+
+        <div class="button">
+            <input class="sign-btn" onclick="location.href='{% url 'pregame' %}'" type="submit"
+                   value="Play Again?"/>
+        </div>
     </div>
-    <div class="button">
-        <input class="sign-btn" onclick="location.href='{% url 'pregame' %}'" type="submit"
-               value="Play Again?"/>
-    </div>
+
 </main>
 </body>
 </html>

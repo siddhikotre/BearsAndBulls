@@ -1,28 +1,91 @@
-word_id,word,length,difficulty,description
-100001,acre,4,easy,"a unit of land area equal to 4,840 square yards"
-100002,mirk,4,easy,dark / gloomy
-100003,yelp,4,easy,To boast
-100004,quip,4,medium,"A smart, sarcastic answer"
-100005,kith,4,medium,Acquaintance
-100006,iota,4,medium,A very small quantity or degree
-100007,adze,4,hard,"A carpenter's or cooper's tool, formed with a thin arching blade set at right angles to the handle"
-100008,tzar,4,hard,The emperor of Russia.
-100009,lynx,4,hard,One of the northern constellations
-100010,poise,5,easy,graceful and elegant bearing in a person
-100011,flake,5,easy,"a small, flat, very thin piece of something, typically one which has broken away or been peeled off from a larger piece"
-100012,crave,5,easy,feel a powerful desire for (something)
-100013,eland,5,medium,a large spiral-horned African antelope which lives in open woodland and grassland
-100014,waltz,5,medium,"a dance in triple time performed by a couple, who as a pair turn rhythmically round and round as they progress around the dance floor"
-100015,shoji,5,medium,a sliding outer or inner door made of a latticed screen covered with white paper
-100016,azoic,5,hard,having no trace of life or organic remains
-100017,smaze,5,hard,a mixture of smoke and haze
-100018,whorl,5,hard,a pattern of spirals or concentric circles
-100019,abides,6,easy,accept or act in accordance with
-100020,thrive,6,easy,prosper / flourish
-100021,quirky,6,easy,having or characterized by peculiar or unexpected traits or aspects
-100022,adrift,6,medium,so as to float without being either moored or steered
-100023,scurvy,6,medium,"a disease caused by a deficiency of vitamin C, characterized by swollen bleeding gums"
-100024,thrawn,6,medium,twisted / crooked
-100025,acetyl,6,hard,"of or denoting the acyl radical —C(O)CH3, derived from acetic acid"
-100026,klutzy,6,hard,clumsy
-100027,scyphi,6,hard,an ancient Greek two-handled drinking cup without a footed base
+word_id,word,length,difficulty,description,phonetic
+100001,gait,4,easy,an animal's manner of moving,/ɡeɪt/
+100002,cyst,4,easy,vesicle in the body.,/s?st/
+100003,yelp,4,easy,To boast,/j?lp/
+100004,bevy,4,easy,a flock of birds,/'b?vi/
+100005,fawn,4,easy,a young deer,/f??n/
+100006,oust,4,easy,remove from a position or office,/a?st/
+100007,ilex,4,easy,"A genus of trees and shrubs, of the natural order",/'??l?ks/
+100008,lieu,4,easy,In place of; instead of.,/lu?/
+100009,wisp,4,easy,"A small bunch or bundle, as of straw",/w?sp/
+100010,faux,4,easy,Artificial; fake.,/f??/
+100011,quip,4,medium,"A smart, sarcastic answer",/kw?p/
+100012,kith,4,medium,Acquaintance,/k??/
+100013,waif,4,medium,Something found and unclaimed,/we?f/
+100014,swig,4,medium,drink in large gulps.,/sw?g/
+100015,sync,4,medium,making things work together,/s??k/
+100016,duos,4,medium,"a pair of people or things,",/'dju???/
+100017,smew,4,medium,"A small merganser or fishing-duck,",/smju?/
+100018,ogre,4,medium,A giant or monster in legends,/'??g?/
+100019,arid,4,medium,Lacking interest or feeling; lifeless and dull.,/'ar?d/
+100020,iota,4,medium,A very small quantity or degree,/??'??t?/
+100021,adze,4,hard,"A carpenter's or cooper's tool, formed with a thin arching blade set at right angles to the handle",/adz/
+100022,tzar,4,hard,The emperor of Russia.,"/z??,ts??/"
+100023,lynx,4,hard,One of the northern constellations,/l??ks/
+100024,pyre,4,hard,a heap of combustible material,/'p???/
+100025,quay,4,hard,a platform where goods and passengers are loaded on and off boats.,/ki?/
+100026,ecru,4,hard,A beige colour.,/'e?kru?/
+100027,urns,4,hard,a special container,/??n/
+100028,byte,4,hard,made up of a series of eight smaller units,/b??t/
+100029,cavy,4,hard,a South American rodent with a sturdy body,/'ke?vi/
+100030,cyan,4,hard,a greenish-blue colour which is one of the primary subtractive colours,/'s???n/
+100031,poise,5,easy,graceful and elegant bearing in a person,/p??z/
+100032,quail,5,easy,feel or show fear or apprehension.,/kwe?l/
+100033,anode,5,easy,the positively charged electrode by which the electrons leave an electrical device.,/'an??d/
+100034,azoic,5,easy,having no trace of life or organic remains,/e?'z???k/
+100035,wimpy,5,easy,weak and cowardly,/'w?mpi/
+100036,squib,5,easy,a short piece of satirical writing.,/skw?b/
+100037,abode,5,easy,a place of residence,/?'b??d/
+100038,sedan,5,easy,"an enclosed chair for conveying one person, carried between horizontal poles",/s?'dan/
+100039,vibex,5,easy,a linear subcutaneous extravasation of blood,/'vi.beks/
+100040,oyez,5,easy,a court officer to command silence and attention before an announcement.,/??'j?s/
+100041,eland,5,medium,a large spiral-horned African antelope which lives in open woodland and grassland,/'i?l?nd/
+100042,waltz,5,medium,"a dance in triple time performed by a couple, who as a pair turn rhythmically round and round as they progress around the dance floor",/w??l(t)s/
+100043,aleph,5,medium,the first letter of the Hebrew alphabet.,/'??l?f/
+100044,align,5,medium,place or arrange (things) in a straight line.,/?'l??n/
+100045,reify,5,medium,make (something abstract) more concrete or real.,/'re??f??/
+100046,pseud,5,medium,intellectually pretentious or affected.,/s(j)u?d/
+100047,progs,5,medium,a computer program.,/pr?g/
+100048,neigh,5,medium,a characteristic high whinnying sound made by a horse.,/ne?/
+100049,polys,5,medium,polyester,/'p?li/
+100050,phobe,5,medium,a person who fears or dislikes a specified thing.,/f??b/
+100051,azoic,5,hard,having no trace of life or organic remains,/e?'z???k/
+100052,smaze,5,hard,a mixture of smoke and haze,/sme?z/
+100053,whorl,5,hard,a pattern of spirals or concentric circles,/w??l/
+100054,squaw,5,hard,a woman or wife.,/skw??/
+100055,nymph,5,hard,a mythological spirit of nature imagined as a beautiful maiden,/n?mf/
+100056,fjord,5,hard,"a long, narrow, deep inlet of the sea between high cliffs",/fj??d/
+100057,abysm,5,hard,the abysm from which nightmares crawl,/?'b?zm/
+100058,ombre,5,hard,a trick-taking card game for three people using a pack of forty cards,/'?mb?/
+100059,murex,5,hard,a predatory tropical marine mollusc,/'mj??r?ks/
+100060,loupe,5,hard,a small magnifying glass used by jewellers and watchmakers.,/lu?p/
+100061,abides,6,easy,accept or act in accordance with,/?'b??d/
+100062,thrive,6,easy,prosper / flourish,/?r??v/
+100063,quirky,6,easy,having or characterized by peculiar or unexpected traits or aspects,/'kw??ki/
+100064,scythe,6,easy,a tool used for cutting crops such as grass or corn,/s??�/
+100065,tavern,6,easy,an inn or pub.,/'tavn/
+100066,wicked,6,easy,evil or morally wrong.,/'w?k?d/
+100067,breath,6,easy,the air taken into or expelled from the lungs.,/br??/
+100068,morsel,6,easy,a small piece or amount of food,/'m??sl/
+100069,daemon,6,easy,an inner or attendant spirit or inspiring force.,/'di?m?n/
+100070,dwarfs,6,easy,"a member of a mythical race of short, stocky humanlike creatures",/dw??fs/
+100071,adrift,6,medium,so as to float without being either moored or steered,/?'dr?ft/
+100072,scurvy,6,medium,"a disease caused by a deficiency of vitamin C, characterized by swollen bleeding gums",/'sk??vi/
+100073,thrawn,6,medium,twisted / crooked,/?r??n/
+100074,casque,6,medium,a helmet.,/k??sk/
+100075,thorpe,6,medium,a village or hamlet.,/???p/
+100076,acquit,6,medium,conduct oneself or perform in a specified way.,/?'kw?t/
+100077,eskimo,6,medium,"a member of an indigenous people inhabiting northern Canada, Alaska",/'?sk?m??/
+100078,scrimp,6,medium,be thrifty or parsimonious; economize.,/skr?mp/
+100079,wharfs,6,medium,a level quayside area to which a ship may be moored to load and unload.,/w??fs/
+100080,fiscal,6,medium,"relating to government revenue, especially taxes.",/'f?skl/
+100081,acetyl,6,hard,"of or denoting the acyl radical �C(O)CH3, derived from acetic acid",/'as?t??l/
+100082,klutzy,6,hard,clumsy,/'kl?tsi/
+100083,scyphi,6,hard,an ancient Greek two-handled drinking cup without a footed base,/scyphi/
+100084,Nordic,6,hard,involving the disciplines of cross-country skiing or ski jumping.,/'n??d?k/
+100085,zephyr,6,hard,a soft gentle breeze.,/'z?f?/
+100086,dynamo,6,hard,an extremely energetic person.,/'d??n?m??/
+100087,etymon,6,hard,a word from which a later word is derived.,/'?t?m?n/
+100088,kvetch,6,hard,a person who complains a great deal.,/kv?t?/
+100089,flumps,6,hard,fall or sit down heavily.,/fl?mps/
+100090,hominy,6,hard,coarsely ground corn (maize) used to make grits.,/'h?m?ni/

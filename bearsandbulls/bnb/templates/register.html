@@ -23,14 +23,14 @@
     }
 
     main {
-      width: 100%;
-      min-height: 100vh;
-      overflow: hidden;
-      background-color: #25274D;
-      padding: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+        background-color: #14213d;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .box {
@@ -89,8 +89,9 @@
     }
 
     .logo img {
-      width: 100px;
-      margin-right: 0.2rem;
+        width: 130px;
+        margin-right: 0.2rem;
+
     }
 
     .logo h2 {
@@ -216,18 +217,18 @@
     }
 
     .carousel {
-      position: absolute;
-      height: 100%;
-      width: 55%;
-      left: 45%;
-      top: 0;
-      background-color: #ffe0d2;
-      border-radius: 2rem;
-      display: grid;
-      grid-template-rows: auto 1fr;
-      padding-bottom: 2rem;
-      overflow: hidden;
-      transition: 0.8s ease-in-out;
+        position: absolute;
+        height: 100%;
+        width: 55%;
+        left: 45%;
+        top: 0;
+        background-color: #fca311;
+        border-radius: 2rem;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        padding-bottom: 2rem;
+        overflow: hidden;
+        transition: 0.8s ease-in-out;
     }
 
     .images-wrapper {
@@ -245,15 +246,23 @@
     }
 
     .img-1 {
-      transform: translate(0, -50px);
+        padding-top: 100px;
+        width: 100%;
+        transform: translate(0, -50px);
     }
 
     .img-2 {
-      transform: scale(0.4, 0.5);
+        width: 110%;
+        padding: 50px;
+        padding-left: 5px;
+        transform: scale(0.4, 0.5);
     }
 
     .img-3 {
-      transform: scale(0.3) rotate(-20deg);
+        padding-top: 20px;
+        width: 90%;
+        padding-left: 40px;
+        transform: scale(0.3) rotate(-20deg);
     }
 
     .image.show {
@@ -412,7 +421,7 @@
         <form action="{% url 'login' %}" autocomplete="off" class="sign-in-form" method="post">
           {% csrf_token %}
           <div class="logo">
-            <img class="center" src="{% static 'bnb/image/logoo.jpg' %}">
+              <img class="center" src="{% static 'bnb/image/newlogo.png' %}">
             <h2>BearsandBulls</h2>
           </div>
 
@@ -450,19 +459,16 @@
               <input class="sign-btn" type="submit" value="Sign In"/>
             </div>
             {% if error %}
-            <div> {{error}}</div>
+              <div style="color: red"> {{error}}</div>
             {% endif %}
-            <p class="text">
-              Forgotten your password or your login details?
-              <a href="#">Get help</a> signing in
-            </p>
+
           </div>
         </form>
 
         <form action="{% url 'register' %}" autocomplete="off" class="sign-up-form" method="post">
           {% csrf_token %}
           <div class="logo">
-            <img class="center" src="{% static 'bnb/image/logoo.jpg' %}">
+              <img class="center" src="{% static 'bnb/image/newlogo.png' %}">
             <h2>BearAndBulls</h2>
           </div>
 
@@ -510,21 +516,18 @@
 
             <input class="sign-btn" type="submit" value="Sign Up"/>
 
-            <p class="text">
-              By signing up, I agree to the
-              <a href="#">Terms of Services</a> and
-              <a href="#">Privacy Policy</a>
-            </p>
+
           </div>
         </form>
       </div>
 
       <div class="carousel">
-        <div class="images-wrapper">
-          <img alt="" class="image img-1 show" src="/static/bnb/image/bnbimag_1.png"/>
-          <img alt="" class="image img-2 " src="/static/bnb/image/bnbimag.png"/>
-          <img alt="" class="image img-3 " src="/static/bnb/image/bnbimag_3.png"/>
-        </div>
+          <div class="images-wrapper">
+              <img alt="" class="image img-1 show" src="/static/bnb/image/word.png"/>
+              <img alt="" class="image img-2 " src="/static/bnb/image/creative.png"/>
+              <img alt="" class="image img-3 " src="/static/bnb/image/bnbimag_3.png"/>
+
+          </div>
 
         <div class="text-slider">
           <div class="text-wrap">

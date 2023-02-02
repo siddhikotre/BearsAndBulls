@@ -81,11 +81,11 @@
             cursor: pointer;
             border-radius: 0.8rem;
             font-size: 0.8rem;
-            margin-bottom: 2rem;
+            margin-bottom: 10px;
             transition: 0.3s;
             position: absolute;
             left: 25%;
-            bottom: 0;
+
 
         }
 
@@ -129,7 +129,7 @@
             <ul>
                 <li> The server will choose a random word which will not be visible to the player.<br></li>
                 <li> The player can type the word he wants to play in the text box and then click on the ENTER
-                    button.<br></li>
+                    button. <br><b style="color: navy">No letters should be repeated</b><br></li>
                 <li><p style="color: orange">a. If your word and the word selected by the server have common letters but
                     at
                     different positions,
@@ -178,7 +178,7 @@
                 <li>Thus we have 1 Bear and 1 Bull</li>
 
                 <li>On guessing all four letters of words at the correct position, you win the game.</li>
-                <li> To reset a game to get a new word from the server, press the RESET button.</li>
+
             </ul>
             <div class="button">
                 <input class="sign-btn" onclick="location.href='{% url 'pregame' %}'" type="submit"

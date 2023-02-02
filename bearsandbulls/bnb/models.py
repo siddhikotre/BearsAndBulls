@@ -8,6 +8,7 @@ class word(models.Model):
     length = models.IntegerField(default=4)
     difficulty = models.CharField(max_length=20, default="easy")
     description = models.CharField(max_length=200, default="Description not available")
+    phonetic = models.CharField(max_length=200, default="phonetic not available")
 
     def __str__(self):
         return self.name
