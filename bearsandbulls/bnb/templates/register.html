@@ -419,17 +419,31 @@
     <div class="inner-box">
       <div class="forms-wrap">
         <form action="{% url 'login' %}" autocomplete="off" class="sign-in-form" method="post">
-          {% csrf_token %}
-          <div class="logo">
-              <img class="center" src="{% static 'bnb/image/newlogo.png' %}">
-            <h2>BearsandBulls</h2>
-          </div>
+            {% csrf_token %}
+            {% for message in messages %}
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            {% if message.tags == 'success' %}
+            <script>
+                var m = "{{message}}";
+                swal("message", m, "success")
+            </script>
+            {% elif message.tags == 'error' %}
+            <script>
+                var m = "{{message}}";
+                swal("message", m, "error")
+            </script>
+            {% endif %}
+            {% endfor %}
+            <div class="logo">
+                <img class="center" src="{% static 'bnb/image/newlogo.png' %}">
+                <h2>BearsandBulls</h2>
+            </div>
 
-          <div class="heading">
-            <h2>Welcome Back</h2>
-            <h6>Not registered yet?</h6>
-            <a class="toggle" href="#">Sign up</a>
-          </div>
+            <div class="heading">
+                <h2>Welcome Back</h2>
+                <h6>Not registered yet?</h6>
+                <a class="toggle" href="#">Sign up</a>
+            </div>
 
           <div class="actual-form">
             <div class="input-wrap">
@@ -458,24 +472,37 @@
             <div class="button">
               <input class="sign-btn" type="submit" value="Sign In"/>
             </div>
-            {% if error %}
-              <div style="color: red"> {{error}}</div>
-            {% endif %}
 
           </div>
         </form>
 
-        <form action="{% url 'register' %}" autocomplete="off" class="sign-up-form" method="post">
-          {% csrf_token %}
-          <div class="logo">
-              <img class="center" src="{% static 'bnb/image/newlogo.png' %}">
-            <h2>BearAndBulls</h2>
-          </div>
+          <form action="{% url 'register' %}" autocomplete="off" class="sign-up-form" method="post">
+              {% csrf_token %}
 
-          <div class="heading">
-            <h2>Get Started</h2>
-            <h6>Already have an account?</h6>
-            <a class="toggle" href="#">Sign in</a>
+              {% for message in messages %}
+              <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+              {% if message.tags == 'success' %}
+              <script>
+                  var m = "{{message}}";
+                  swal("Welcome", m, "success")
+              </script>
+              {% elif message.tags == 'error' %}
+              <script>
+                  var m = "{{message}}";
+                  swal("message", m, "error")
+              </script>
+              {% endif %}
+              {% endfor %}
+
+              <div class="logo">
+                  <img class="center" src="{% static 'bnb/image/newlogo.png' %}">
+                  <h2>BearAndBulls</h2>
+              </div>
+
+              <div class="heading">
+                  <h2>Get Started</h2>
+                  <h6>Already have an account?</h6>
+                  <a class="toggle" href="#">Sign in</a>
           </div>
 
           <div class="actual-form">

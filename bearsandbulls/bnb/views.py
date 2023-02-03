@@ -9,9 +9,6 @@ from django.shortcuts import render
 from .models import game, word, gamelog
 
 
-# Create your views here.
-
-
 def index(request):
     return render(request, 'index.html')
 
@@ -36,9 +33,12 @@ def login_view(request):
 
         if user1 is not None:
             login(request, user1)
+
             return render(request, "rules.html")
+
         else:
-            return render(request, "register.html", {"error": "Invalid username or password."})
+            messages.error(request, "Invalid username or password.")
+            return render(request, "register.html")
     return render(request, 'register.html')
 
 
@@ -52,6 +52,8 @@ def rules(request):
 @login_required
 def pregame(request):
     if request.method == 'POST':
+        request.session['display'] = ""
+        request.session['rough'] = ""
         player = request.user
         playerch = request.POST['player']
         opp_game_id = str(request.POST['txtvalue']).strip()
@@ -87,7 +89,7 @@ def pregame(request):
     return render(request, 'pregame.html')
 
 
-def bears_and_bulls(superword, curword, game_id, request, phonetic):
+def bears_and_bulls(superword, curword, game_id, request, description):
     message = ""
     input_word = curword.upper()
     super_word = superword.upper()
@@ -116,38 +118,50 @@ def bears_and_bulls(superword, curword, game_id, request, phonetic):
                     bears += 1
 
         if bulls == len(super_word):
-            message = f"Congratulations you have guessed the word correct ! The word was {super_word} phonetic{phonetic}"
+            message = f"Congratulations you have guessed the word correct ! The word was {super_word}. Description: {description}"
             gameobj = game.objects.filter(game_id=game_id).first()
             gameobj.is_active = 2
             gameobj.winner = request.user.id
             gameobj.save()
         else:
-            message = f"YOUR WORD: {input_word} : {str(bears)} BEARS AND {str(bulls)}  BULLS."
+            message = f"YOUR WORD - {input_word} - {str(bears)} BEARS AND {str(bulls)}  BULLS."
 
     return message
 
 
 @login_required
 def game_view(request):
+    request.session['turn'] = 0
     gamelog_id = request.session['gamelog_id']
     print(f"game log id {gamelog_id}")
     gamelogobj = gamelog.objects.all().filter(gamelog_id=gamelog_id).first()
     gameid = request.session['game_id']
     gameobj = game.objects.filter(game_id=gameid).first()
+    if gameobj.is_active == 0:
+        messages.info(request, "Wait for your opponent to join...")
     if gameobj.is_active == 1:
         if request.method == 'POST':
             current_word = request.POST['text']
             gamelogobj.inputtext = current_word
-            message = bears_and_bulls(word.objects.filter(word_id=gameobj.word).first().word, current_word, gameid,
-                                      request, word.objects.filter(word_id=gameobj.word).first().phonetic)
-            print(message)
-            display = request.user.username+": "+ message + "\n" + gamelogobj.display
+            wrd = word.objects.filter(word_id=gameobj.word).first()
+            message = bears_and_bulls(wrd.word, current_word, gameid,
+                                      request, wrd.description)
+            if "Congratulations" in message:
+                messages.success(request,
+                                 f"Congratulations you have guessed the word correct ! The word was {wrd.word.upper()}. Description: {wrd.description}")
+            display = request.user.username + ": " + message + "\n" + gamelogobj.display
+            request.session['turn'] = display.count(request.user.username)
             gamelogobj.rough = request.POST['rough']
             gamelogobj.display = display
             request.session['display'] = display
             request.session['rough'] = request.POST['rough']
             gamelogobj.save()
     return render(request, 'game.html')
+
+
+def openPopup(request):
+    if "Congratulations" in message:
+        return render(request, 'game.html', {"bnb": message})
 
 
 def endgame(request):

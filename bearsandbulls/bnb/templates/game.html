@@ -60,7 +60,7 @@
             cursor: pointer;
             border-radius: 0.8rem;
             font-size: 0.8rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             transition: 0.3s;
             position: absolute;
             left: 25%;
@@ -122,7 +122,7 @@
             width: 100%;
             border: 2px solid black;
             border-radius: 20px;
-            margin: 8px 0;
+            margin: 6px 0;
             outline: none;
             font-size: 30px;
 
@@ -134,7 +134,7 @@
             border-radius: 4px;
             margin: 8px 0;
             outline: none;
-            height: 170px;
+
 
         }
 
@@ -153,6 +153,8 @@
 
         .text {
             text-align: left;
+            cursor: text;
+
         }
 
         .logout {
@@ -177,7 +179,7 @@
         }
 
         .display {
-            border-radius: 25px;
+            border-radius: 10px;
             border: 2px solid black;
             padding: 20px;
             width: 200px;
@@ -228,6 +230,26 @@
             box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 
         }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
 </head>
 <body>
@@ -236,7 +258,22 @@
         <div class="inner-box">
             <form action="{% url 'game' %}" autocomplete="off" class="sign-in-form" method="post">
                 {% csrf_token %}
+                {% for message in messages %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                {% if message.tags == 'info' %}
+                <script>
+                    var m = "{{message}}";
+                    swal("message", m, "info")
+                </script>
+                {% elif message.tags == 'success' %}
+                <script>
+                    var m = "{{message}}";
+                    swal("message", m, "success")
+                </script>
+                {% endif %}
+                {% endfor %}
                 <div align="left">GAME ID : {{ request.session.game_id }}</div>
+                <div align="left">NUMBER OF TURNS : {{ request.session.turn }}</div>
                 <div align="right"><a href="{% url 'logout' %}">LOGOUT</a></div>
                 <h1>Welcome to Bears & Bulls</h1><br>
                 <input class="text" id="text" name="text" type="text"><br>
@@ -262,12 +299,6 @@
                        value="Quit"/>
             </div>
 
-
-            <div class="popup" id="popup">
-                <h2>Thank you</h2>
-
-                <input class="sign-btn" onclick="closePopup()" type="submit" value="Okay"/>
-            </div>
         </div>
     </div>
 </main>
