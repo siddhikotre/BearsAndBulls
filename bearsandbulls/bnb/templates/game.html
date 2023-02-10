@@ -284,12 +284,7 @@
                 {% csrf_token %}
                 {% for message in messages %}
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                {% if message.tags == 'info' %}
-                <script>
-                    var m = "{{message}}";
-                    swal("message", m, "info")
-                </script>
-                {% elif message.tags == 'success' %}
+                {% if message.tags == 'success' %}
                 <script>
                     var m = "{{message}}";
                     swal("Congratulations!!", m, "success")
@@ -317,14 +312,12 @@
                               style="text-align-all:left; overflow:auto;width: 100%;height: 100px">{{request.session.rough}}</textarea>
                 </div>
 
-            </form>
-            <div class="button">
-                <input class="sign-btn" onclick="location.href='{% url 'endgame' %}'" type="submit"
-                       value="Quit"/>
-                <input class="sign-btn1" onclick="location.href='{% url 'endgame' %}'" type="submit"
-                       value="EndGame"/>
-            </div>
 
+            <div class="button">
+                <input class="sign-btn" style ="text-align:center" onclick="location.href='{% url 'quit' %}'" value="Quit"/>
+                <input class="sign-btn1" style ="text-align:center" onclick="location.href='{% url 'endgame' %}'" value="EndGame"/>
+            </div>
+        </form>
         </div>
     </div>
 </main>
