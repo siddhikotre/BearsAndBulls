@@ -139,10 +139,13 @@ def game_view(request):
     gameobj = game.objects.filter(game_id=gameid).first()
     if gameobj.is_active == 0:
         messages.info(request, "Wait for your opponent to join...")
+    gameid = request.session['game_id']
+    gameobj = game.objects.filter(game_id=gameid).first()
+    wrd = word.objects.filter(word_id=gameobj.word).first()
+    if gameobj.is_active == 2:
+        messages.info(request, f"Your opponent won the game, The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Try again next time...")
+        return render(request, 'endgame.html')
     if gameobj.is_active == 3:
-        gameid = request.session['game_id']
-        gameobj = game.objects.filter(game_id=gameid).first()
-        wrd = word.objects.filter(word_id=gameobj.word).first()
         messages.info(request, f"Unfortunately your opponent quit the game. The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Please join a new game.")
         return render(request, 'endgame.html')
     if gameobj.is_active == 1:
@@ -157,6 +160,7 @@ def game_view(request):
                                  f"You have guessed the word correct ! The word was {wrd.word.upper()}."
                                  f" Description: {wrd.description} "
                                  f"Phonetic: {wrd.phonetic}")
+                return render(request, 'endgame.html')
             display = request.user.username + ": " + message + "\n" + gamelogobj.display
             request.session['turn'] = display.count(request.user.username)
             gamelogobj.rough = request.POST['rough']
