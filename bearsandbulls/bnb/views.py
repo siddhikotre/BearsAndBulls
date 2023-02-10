@@ -54,6 +54,7 @@ def pregame(request):
     if request.method == 'POST':
         request.session['display'] = ""
         request.session['rough'] = ""
+        request.session['turn'] = 0
         player = request.user
         playerch = request.POST['player']
         opp_game_id = str(request.POST['txtvalue']).strip()
@@ -89,7 +90,7 @@ def pregame(request):
     return render(request, 'pregame.html')
 
 
-def bears_and_bulls(superword, curword, game_id, request, description):
+def bears_and_bulls(superword, curword, game_id, request, description, phonetic):
     message = ""
     input_word = curword.upper()
     super_word = superword.upper()
@@ -118,7 +119,7 @@ def bears_and_bulls(superword, curword, game_id, request, description):
                     bears += 1
 
         if bulls == len(super_word):
-            message = f"Congratulations you have guessed the word correct ! The word was {super_word}. Description: {description}"
+            message = f"Congratulations you have guessed the word correct ! The word was {super_word}. Description: {description} Phonetic:{phonetic}"
             gameobj = game.objects.filter(game_id=game_id).first()
             gameobj.is_active = 2
             gameobj.winner = request.user.id
@@ -131,7 +132,6 @@ def bears_and_bulls(superword, curword, game_id, request, description):
 
 @login_required
 def game_view(request):
-    request.session['turn'] = 0
     gamelog_id = request.session['gamelog_id']
     print(f"game log id {gamelog_id}")
     gamelogobj = gamelog.objects.all().filter(gamelog_id=gamelog_id).first()
@@ -145,10 +145,12 @@ def game_view(request):
             gamelogobj.inputtext = current_word
             wrd = word.objects.filter(word_id=gameobj.word).first()
             message = bears_and_bulls(wrd.word, current_word, gameid,
-                                      request, wrd.description)
+                                      request, wrd.description, wrd.phonetic)
             if "Congratulations" in message:
                 messages.success(request,
-                                 f"Congratulations you have guessed the word correct ! The word was {wrd.word.upper()}. Description: {wrd.description}")
+                                 f"You have guessed the word correct ! The word was {wrd.word.upper()}."
+                                 f" Description: {wrd.description} "
+                                 f"Phonetic: {wrd.phonetic}")
             display = request.user.username + ": " + message + "\n" + gamelogobj.display
             request.session['turn'] = display.count(request.user.username)
             gamelogobj.rough = request.POST['rough']

@@ -52,7 +52,7 @@
 
         .sign-btn {
             display: inline-block;
-            width: 50%;
+            width: 30%;
             height: 43px;
             background-color: #151111;
             color: #fff;
@@ -63,12 +63,34 @@
             margin-bottom: 1rem;
             transition: 0.3s;
             position: absolute;
-            left: 25%;
+            left: 15%;
             bottom: 0;
 
         }
 
         .sign-btn:hover {
+            background-color: #8371fd;
+        }
+
+        .sign-btn1 {
+            display: inline-block;
+            width: 30%;
+            height: 43px;
+            background-color: #151111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            transition: 0.3s;
+            position: absolute;
+            left: 55%;
+            bottom: 0;
+
+        }
+
+        .sign-btn1:hover {
             background-color: #8371fd;
         }
 
@@ -270,7 +292,7 @@
                 {% elif message.tags == 'success' %}
                 <script>
                     var m = "{{message}}";
-                    swal("message", m, "success")
+                    swal("Congratulations!!", m, "success")
                 </script>
                 {% endif %}
                 {% endfor %}
@@ -299,6 +321,8 @@
             <div class="button">
                 <input class="sign-btn" onclick="location.href='{% url 'endgame' %}'" type="submit"
                        value="Quit"/>
+                <input class="sign-btn1" onclick="location.href='{% url 'endgame' %}'" type="submit"
+                       value="EndGame"/>
             </div>
 
         </div>
