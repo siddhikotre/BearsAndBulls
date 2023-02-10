@@ -160,12 +160,6 @@ def game_view(request):
             gamelogobj.save()
     return render(request, 'game.html')
 
-
-def openPopup(request):
-    if "Congratulations" in message:
-        return render(request, 'game.html', {"bnb": message})
-
-
 def endgame(request):
     return render(request, 'endgame.html')
 
