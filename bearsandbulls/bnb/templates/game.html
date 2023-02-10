@@ -284,10 +284,10 @@
                 {% csrf_token %}
                 {% for message in messages %}
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                {% if message.tags == 'success' %}
+                {% if message.tags == 'info' %}
                 <script>
                     var m = "{{message}}";
-                    swal("Congratulations!!", m, "success")
+                    swal("Hello Player", m, "info")
                 </script>
                 {% endif %}
                 {% endfor %}

@@ -112,7 +112,12 @@
             <div align="right"><a href="{% url 'logout' %}">LOGOUT</a></div>
             {% for message in messages %}
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                {% if message.tags == 'info' %}
+                {% if message.tags == 'success' %}
+                <script>
+                    var m = "{{message}}";
+                    swal("Congratulations!!", m, "success")
+                </script>
+                {% elif message.tags == 'info' %}
                 <script>
                     var m = "{{message}}";
                     swal("Awww Snap!", m, "info")
