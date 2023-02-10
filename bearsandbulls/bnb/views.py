@@ -139,6 +139,12 @@ def game_view(request):
     gameobj = game.objects.filter(game_id=gameid).first()
     if gameobj.is_active == 0:
         messages.info(request, "Wait for your opponent to join...")
+    if gameobj.is_active == 3:
+        gameid = request.session['game_id']
+        gameobj = game.objects.filter(game_id=gameid).first()
+        wrd = word.objects.filter(word_id=gameobj.word).first()
+        messages.info(request, f"Unfortunately your opponent quit the game. The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Please join a new game.")
+        return render(request, 'endgame.html')
     if gameobj.is_active == 1:
         if request.method == 'POST':
             current_word = request.POST['text']
@@ -160,7 +166,19 @@ def game_view(request):
             gamelogobj.save()
     return render(request, 'game.html')
 
+
 def endgame(request):
+    return render(request, 'endgame.html')
+
+
+def quit_event(request):
+    print("In Quit event")
+    gameid = request.session['game_id']
+    gameobj = game.objects.filter(game_id=gameid).first()
+    gameobj.is_active = 3
+    gameobj.save()
+    wrd = word.objects.filter(word_id=gameobj.word).first()
+    messages.info(request, f"Better Luck Next Time! The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}.")
     return render(request, 'endgame.html')
 
 
@@ -178,4 +196,4 @@ def increment_game_number():
 
 def logout_view(request):
     logout(request)
-    return render(request,'register.html')
+    return render(request, 'register.html')

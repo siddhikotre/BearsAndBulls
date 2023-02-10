@@ -110,6 +110,15 @@
     <div class="box">
         <div class="inner-box">
             <div align="right"><a href="{% url 'logout' %}">LOGOUT</a></div>
+            {% for message in messages %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                {% if message.tags == 'info' %}
+                <script>
+                    var m = "{{message}}";
+                    swal("Awww Snap!", m, "info")
+                </script>
+                {% endif %}
+                {% endfor %}
             <h1> Thank you for playing!</h1>
 
 
