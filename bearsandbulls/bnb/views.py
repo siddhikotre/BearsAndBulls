@@ -197,6 +197,10 @@ def increment_game_number():
     return 'BNB_' + str(booking_int)
 
 
+def leaderboard():
+    return render(request, 'leaderboard.html')
+
+
 def logout_view(request):
     logout(request)
     return render(request, 'register.html')
