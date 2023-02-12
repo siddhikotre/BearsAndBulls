@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import request
+from django.core import serializers
 from django.shortcuts import render
 
 from .models import game, word, gamelog, leaderboard
@@ -124,9 +124,9 @@ def bears_and_bulls(superword, curword, game_id, request, description, phonetic)
             gameobj = game.objects.filter(game_id=game_id).first()
             gameobj.is_active = 2
             if request.user.id == gameobj.player_id:
-                gameobj.p1_score = int(request.session['turn'])
+                gameobj.p1_score = int(request.session['turn']) + 1
             elif request.user.id == gameobj.opponent_id:
-                gameobj.p2_score = int(request.session['turn'])
+                gameobj.p2_score = int(request.session['turn']) + 1
             gameobj.winner = request.user.id
             gameobj.save()
         else:
@@ -151,9 +151,9 @@ def game_view(request):
         messages.info(request,
                       f"Your opponent won the game, The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Try again next time...")
         if request.user.id == gameobj.player_id:
-            gameobj.p1_score = int(request.session['turn'])
+            gameobj.p1_score = int(request.session['turn']) + 1
         elif request.user.id == gameobj.opponent_id:
-            gameobj.p2_score = int(request.session['turn'])
+            gameobj.p2_score = int(request.session['turn']) + 1
         gameobj.save()
         return render(request, 'endgame.html')
     if gameobj.is_active == 3:
@@ -178,13 +178,13 @@ def game_view(request):
                 if not leader_row.num_of_turns.isnumeric():
                     leader_row.player_id = request.user.id
                     leader_row.user_name = request.user.username
-                    leader_row.num_of_turns = int(request.session['turn'])
+                    leader_row.num_of_turns = int(request.session['turn']) + 1
                     leader_row.save()
                 else:
                     if int(request.session['turn']) < int(leader_row.num_of_turns):
                         leader_row.player_id = request.user.id
                         leader_row.user_name = request.user.username
-                        leader_row.num_of_turns = int(request.session['turn'])
+                        leader_row.num_of_turns = int(request.session['turn']) + 1
                         leader_row.save()
                 return render(request, 'endgame.html')
 
@@ -225,8 +225,12 @@ def increment_game_number():
     return 'BNB_' + str(booking_int)
 
 
-def leaderboard_view():
-    return render(request, 'leaderboard.html')
+def leaderboard_view(request):
+    data = serializers.serialize("python", leaderboard.objects.all())
+    context = {
+        'data': data,
+    }
+    return render(request, 'leaderboard.html', context)
 
 
 def logout_view(request):

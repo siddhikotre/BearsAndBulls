@@ -48,6 +48,47 @@
             padding-left: 4rem;
         }
 
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+
+        td, th {
+            border: 1px solid #dddddd;
+            padding: 4.1px;
+            text-align: center;
+        }
+
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+
+        }
+
+        .sign-btn {
+            display: inline-block;
+            width: 30%;
+            height: 40px;
+            background-color: #151111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+            position: absolute;
+            text-align: center;
+            bottom: 1px;
+            left: 37%;
+
+        }
+
+        .sign-btn:hover {
+            background-color: #8371fd;
+        }
     </style>
     <meta charset="UTF-8">
     <title>leaderboard</title>
@@ -56,7 +97,33 @@
 <main>
     <div class="box">
         <div class="inner-box">
-            <h1 align="center">LeaderBoard</h1>
+            <h1 align="center" style="color: navy">LeaderBoard</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th> SCORE NUMBER</th>
+                    <th>DIFFICULTY</th>
+                    <th>WORD LENGTH</th>
+                    <th>PLAYER ID</th>
+                    <th>USERNAME</th>
+                    <th>NUMBER OF TURNS</th>
+                </tr>
+                </thead>
+                {% for instance in data %}
+                <tr>
+                    <td>{{instance.pk}}</td>
+                    <td>{{instance.fields.difficulty}}</td>
+                    <td>{{instance.fields.word_length}}</td>
+                    <td>{{instance.fields.player_id}}</td>
+                    <td>{{instance.fields.user_name}}</td>
+                    <td>{{instance.fields.num_of_turns}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="button">
+                <input class="sign-btn" onclick="location.href='{% url 'endgame' %}'"
+                       value="<<Go back"/>
+            </div>
         </div>
     </div>
 </main>

@@ -63,7 +63,7 @@
 
         .sign-btn {
             display: inline-block;
-            width: 50%;
+            width: 30%;
             height: 43px;
             background-color: #151111;
             color: #fff;
@@ -74,12 +74,34 @@
             margin-bottom: 2rem;
             transition: 0.3s;
             position: absolute;
-            left: 25%;
+            left: 20%;
             bottom: 0;
 
         }
 
         .sign-btn:hover {
+            background-color: #8371fd;
+        }
+
+        .sign-btn1 {
+            display: inline-block;
+            width: 30%;
+            height: 43px;
+            background-color: #151111;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+            position: absolute;
+            left: 55%;
+            bottom: 0;
+
+        }
+
+        .sign-btn1:hover {
             background-color: #8371fd;
         }
 
@@ -123,7 +145,7 @@
                     swal("Awww Snap!", m, "info")
                 </script>
                 {% endif %}
-                {% endfor %}
+            {% endfor %}
             <h1> Thank you for playing!</h1>
 
 
@@ -133,6 +155,10 @@
         <div class="button">
             <input class="sign-btn" onclick="location.href='{% url 'pregame' %}'" type="submit"
                    value="Play Again?"/>
+        </div>
+        <div class="button">
+            <input class="sign-btn1" onclick="location.href='{% url 'leaderboard' %}'" type="submit"
+                   value="View LeaderBoard"/>
         </div>
     </div>
 
