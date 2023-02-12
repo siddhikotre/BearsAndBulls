@@ -123,6 +123,10 @@ def bears_and_bulls(superword, curword, game_id, request, description, phonetic)
             message = f"Congratulations you have guessed the word correct ! The word was {super_word}. Description: {description} Phonetic:{phonetic}"
             gameobj = game.objects.filter(game_id=game_id).first()
             gameobj.is_active = 2
+            if request.user.id == gameobj.player_id:
+                gameobj.p1_score = int(request.session['turn'])
+            elif request.user.id == gameobj.opponent_id:
+                gameobj.p2_score = int(request.session['turn'])
             gameobj.winner = request.user.id
             gameobj.save()
         else:
@@ -146,6 +150,11 @@ def game_view(request):
     if gameobj.is_active == 2:
         messages.info(request,
                       f"Your opponent won the game, The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Try again next time...")
+        if request.user.id == gameobj.player_id:
+            gameobj.p1_score = int(request.session['turn'])
+        elif request.user.id == gameobj.opponent_id:
+            gameobj.p2_score = int(request.session['turn'])
+        gameobj.save()
         return render(request, 'endgame.html')
     if gameobj.is_active == 3:
         messages.info(request,
