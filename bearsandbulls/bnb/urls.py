@@ -13,6 +13,7 @@ urlpatterns = [
     path('game/', views.game_view, name="game"),
     path('endgame/', views.endgame, name="endgame"),
     path('quit/', views.quit_event, name="quit"),
+    path('leaderboard/', views.leaderboard, name="leaderboard"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

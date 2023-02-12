@@ -176,7 +176,6 @@ def endgame(request):
 
 
 def quit_event(request):
-    print("In Quit event")
     gameid = request.session['game_id']
     gameobj = game.objects.filter(game_id=gameid).first()
     gameobj.is_active = 3
