@@ -1,0 +1,10 @@
+score_id,word_length,difficulty,player_id,user_name,num_of_turns
+1,4,easy,0,"<Imagine your name here, now go play>",--
+2,5,easy,0,"<Imagine your name here, now go play>",--
+3,6,easy,0,"<Imagine your name here, now go play>",--
+4,4,medium,0,"<Imagine your name here, now go play>",--
+5,5,medium,0,"<Imagine your name here, now go play>",--
+6,6,medium,0,"<Imagine your name here, now go play>",--
+7,4,hard,0,"<Imagine your name here, now go play>",--
+8,5,hard,0,"<Imagine your name here, now go play>",--
+9,6,hard,0,"<Imagine your name here, now go play>",--
