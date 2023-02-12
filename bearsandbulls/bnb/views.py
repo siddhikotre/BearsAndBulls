@@ -4,9 +4,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import request
 from django.shortcuts import render
 
-from .models import game, word, gamelog
+from .models import game, word, gamelog, leaderboard
 
 
 def index(request):
@@ -58,7 +59,7 @@ def pregame(request):
         player = request.user
         playerch = request.POST['player']
         opp_game_id = str(request.POST['txtvalue']).strip()
-        print(f"game_id {request.user.id}")
+
         if opp_game_id != "":
             game_obj2 = game.objects.filter(game_id=opp_game_id).first()
             game_obj2.opponent_id = request.user.id
@@ -143,10 +144,12 @@ def game_view(request):
     gameobj = game.objects.filter(game_id=gameid).first()
     wrd = word.objects.filter(word_id=gameobj.word).first()
     if gameobj.is_active == 2:
-        messages.info(request, f"Your opponent won the game, The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Try again next time...")
+        messages.info(request,
+                      f"Your opponent won the game, The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Try again next time...")
         return render(request, 'endgame.html')
     if gameobj.is_active == 3:
-        messages.info(request, f"Unfortunately your opponent quit the game. The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Please join a new game.")
+        messages.info(request,
+                      f"Unfortunately your opponent quit the game. The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}. Please join a new game.")
         return render(request, 'endgame.html')
     if gameobj.is_active == 1:
         if request.method == 'POST':
@@ -160,7 +163,22 @@ def game_view(request):
                                  f"You have guessed the word correct ! The word was {wrd.word.upper()}."
                                  f" Description: {wrd.description} "
                                  f"Phonetic: {wrd.phonetic}")
+
+                # setting leaderboard values
+                leader_row = leaderboard.objects.filter(word_length=gameobj.word_length).filter(difficulty=gameobj.difficulty).first()
+                if not leader_row.num_of_turns.isnumeric():
+                    leader_row.player_id = request.user.id
+                    leader_row.user_name = request.user.username
+                    leader_row.num_of_turns = int(request.session['turn'])
+                    leader_row.save()
+                else:
+                    if int(request.session['turn']) < int(leader_row.num_of_turns):
+                        leader_row.player_id = request.user.id
+                        leader_row.user_name = request.user.username
+                        leader_row.num_of_turns = int(request.session['turn'])
+                        leader_row.save()
                 return render(request, 'endgame.html')
+
             display = request.user.username + ": " + message + "\n" + gamelogobj.display
             request.session['turn'] = display.count(request.user.username)
             gamelogobj.rough = request.POST['rough']
@@ -181,7 +199,8 @@ def quit_event(request):
     gameobj.is_active = 3
     gameobj.save()
     wrd = word.objects.filter(word_id=gameobj.word).first()
-    messages.info(request, f"Better Luck Next Time! The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}.")
+    messages.info(request,
+                  f"Better Luck Next Time! The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}.")
     return render(request, 'endgame.html')
 
 
@@ -197,7 +216,7 @@ def increment_game_number():
     return 'BNB_' + str(booking_int)
 
 
-def leaderboard():
+def leaderboard_view():
     return render(request, 'leaderboard.html')
 
 

@@ -38,6 +38,14 @@ class gamelog(models.Model):
     display = models.CharField(max_length=5000,default="")
     rough = models.CharField(max_length=5000,default="")
 
+class leaderboard(models.Model):
+    score_id = models.CharField(max_length=50,primary_key=True)
+    word_length = models.IntegerField(default=4)
+    difficulty = models.CharField(max_length=20)
+    player_id = models.IntegerField(default=0)
+    user_name = models.CharField(max_length=100,default = '<Imagine your name here, now go play>')
+    num_of_turns = models.CharField(max_length=100,default = '--')
+
     def __str__(self):
         return self.name
 
