@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class word(models.Model):
     word_id = models.IntegerField(primary_key=True)
     word = models.CharField(max_length=50)
@@ -12,6 +11,15 @@ class word(models.Model):
 
     def __str__(self):
         return self.name
+
+
+'''=================================================================================
+game.is_active options:
+game.is_active = 0 -> The game is inactive and waiting for your opponent to join
+game.is_active = 1 -> The game is active and in play
+game.is_active = 2 -> The game is inactive since your opponent has won the game
+game.is_active = 3 -> The game is inactive since your opponent has quit the game
+=================================================================================='''
 
 
 class game(models.Model):
@@ -33,19 +41,19 @@ class game(models.Model):
 
 
 class gamelog(models.Model):
-    gamelog_id = models.CharField(max_length=50,primary_key=True)
+    gamelog_id = models.CharField(max_length=50, primary_key=True)
     text = models.CharField(max_length=50)
-    display = models.CharField(max_length=5000,default="")
-    rough = models.CharField(max_length=5000,default="")
+    display = models.CharField(max_length=5000, default="")
+    rough = models.CharField(max_length=5000, default="")
+
 
 class leaderboard(models.Model):
-    score_id = models.CharField(max_length=50,primary_key=True)
+    score_id = models.CharField(max_length=50, primary_key=True)
     word_length = models.IntegerField(default=4)
     difficulty = models.CharField(max_length=20)
     player_id = models.IntegerField(default=0)
-    user_name = models.CharField(max_length=100,default = '<Imagine your name here, now go play>')
-    num_of_turns = models.CharField(max_length=100,default = '--')
+    user_name = models.CharField(max_length=100, default='<Imagine your name here, now go play>')
+    num_of_turns = models.CharField(max_length=100, default='--')
 
     def __str__(self):
         return self.name
-

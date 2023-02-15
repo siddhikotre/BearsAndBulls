@@ -159,6 +159,15 @@
         <div class="inner-box">
             <form action="{% url 'pregame' %}" autocomplete="off" class="sign-in-form" method="POST">
                 {% csrf_token %}
+                 {% for message in messages %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                {% if message.tags == 'error' %}
+                <script>
+                    var m = "{{message}}";
+                    swal("Hello Player", m, "error")
+                </script>
+                {% endif %}
+                {% endfor %}
                 <div align="left" style="color: navy; font-size: larger">Player: {{ request.user.username }}</div>
                 <div align="right"><a href="{% url 'logout' %}">LOGOUT</a></div>
                 <h1 class="title">CUSTOMIZE YOUR GAME</h1>
