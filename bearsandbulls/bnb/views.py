@@ -3,21 +3,21 @@ Author : Siddhi Santosh Kotre
 Project : Bears And Bulls
 TYBSc IT Roll Number : 730
 #=========================="""
-
 # Importing packages
 import random
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.shortcuts import render
+
 from .models import game, word, gamelog, leaderboard
 
 
 def index(request):
     return render(request, 'index.html')
-
 
 # Module for registering a new user
 def register(request):
@@ -25,12 +25,10 @@ def register(request):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-
         user = User.objects.create_user(username=username, email=email, password=password, )
         user.save();
         messages.success(request, "Your account has been successfully created")
     return render(request, 'register.html')
-
 
 # Module for user login authentication
 def login_view(request):
@@ -39,7 +37,6 @@ def login_view(request):
         username1 = request.POST['username1']
         password1 = request.POST['password1']
         user1 = authenticate(username=username1, password=password1)
-
         # Checking if user is valid and logging him into the game
         if user1 is not None:
             login(request, user1)
@@ -50,14 +47,12 @@ def login_view(request):
             return render(request, "register.html")
     return render(request, 'register.html')
 
-
 # Rendering rules webpage
 @login_required
 def rules(request):
     player_id = request.user
     print(f"player is {player_id},{player_id.id}")
     return render(request, 'rules.html')
-
 
 # Module for pre game setting selections
 @login_required
@@ -70,8 +65,7 @@ def pregame(request):
         player = request.user
         playerch = request.POST['player']
         opp_game_id = str(request.POST['txtvalue']).strip()
-
-        # If trying to join a duo game setting its id as opponent player id
+        # If trying to join a duo game setting it's id as opponent player id
         if opp_game_id != "":
             game_obj2 = game.objects.filter(game_id=opp_game_id).first()
             if game_obj2 is None or game_obj2.is_active!=0:
@@ -111,7 +105,6 @@ def pregame(request):
         return render(request, 'game.html')
     return render(request, 'pregame.html')
 
-
 # Core logic for calculating bears and bulls
 def bears_and_bulls(superword, curword, game_id, request, description, phonetic):
     # Initializing variables and converting them into upper case for handling case sensitivity
@@ -120,7 +113,6 @@ def bears_and_bulls(superword, curword, game_id, request, description, phonetic)
     super_word = superword.upper()
     print(input_word + " " + super_word)
     invalid = False
-
     # Input word validation block
     # Rule : The input word length should be same as the length selected in pre game settings.
     if len(input_word) != len(super_word):
@@ -145,7 +137,6 @@ def bears_and_bulls(superword, curword, game_id, request, description, phonetic)
                     bulls += 1
                 elif (input_word[i] == super_word[j]) and (i != j):
                     bears += 1
-
         # If number of bulls is equal to length of superword you have won the game
         if bulls == len(super_word):
             message = f"Congratulations you have guessed the word correct ! The word was {super_word}. Description: {description} Phonetic:{phonetic}"
@@ -161,9 +152,7 @@ def bears_and_bulls(superword, curword, game_id, request, description, phonetic)
         # If the game is not over displaying number of bears and bulls
         else:
             message = f"YOUR WORD - {input_word} - {str(bears)} BEARS AND {str(bulls)}  BULLS."
-
     return message
-
 
 @login_required
 def game_view(request):
@@ -209,7 +198,6 @@ def game_view(request):
                                  f"You have guessed the word correct ! The word was {wrd.word.upper()}."
                                  f" Description: {wrd.description} "
                                  f"Phonetic: {wrd.phonetic}")
-
                 # Setting leaderboard values
                 leader_row = leaderboard.objects.filter(word_length=gameobj.word_length).filter(
                     difficulty=gameobj.difficulty).first()
@@ -226,7 +214,6 @@ def game_view(request):
                     leader_row.num_of_turns = int(request.session['turn']) + 1
                     leader_row.save()
                 return render(request, 'endgame.html')
-
             # Display area updated with the latest message
             display = request.user.username + ": " + message + "\n" + gamelogobj.display
             request.session['turn'] = display.count(request.user.username)
@@ -237,11 +224,9 @@ def game_view(request):
             gamelogobj.save()
     return render(request, 'game.html')
 
-
 # Rendering end game page
 def endgame(request):
     return render(request, 'endgame.html')
-
 
 # Module for quit game event
 def quit_event(request):
@@ -256,7 +241,6 @@ def quit_event(request):
                   f"Better Luck Next Time! The word was {wrd.word} which means {wrd.description} and it is pronounced as {wrd.phonetic}.")
     return render(request, 'endgame.html')
 
-
 # Module for generating new game ID
 def increment_game_number():
     gids = game.objects.all().values_list('game_id', flat=True)
@@ -269,7 +253,6 @@ def increment_game_number():
     booking_int = last_game[len(last_game) - 1] + 1
     return 'BNB_' + str(booking_int)
 
-
 # Displaying leaderboard on the page
 def leaderboard_view(request):
     data = serializers.serialize("python", leaderboard.objects.all())
@@ -277,7 +260,6 @@ def leaderboard_view(request):
         'data': data,
     }
     return render(request, 'leaderboard.html', context)
-
 
 # Module for a player to log out of current session
 def logout_view(request):
